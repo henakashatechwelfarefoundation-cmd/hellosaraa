@@ -1,0 +1,8 @@
+Place your custom "Hey Sara" Porcupine keyword file here, named exactly:
+  hey_sara.ppn
+
+Generate it for free at https://console.picovoice.ai:
+  Porcupine -> Train a custom keyword -> type "Hey Sara" -> platform: Android -> Download
+
+Once it's here, `npx expo prebuild --clean` will copy it into the native
+project's assets automatically (see app.plugin.js).
