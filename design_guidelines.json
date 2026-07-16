@@ -1,0 +1,193 @@
+{
+  "app_name": "Hello Sara",
+  "personality": "6 Glass / Luxe DARK infused with Apple Intelligence 'Liquid Glass' UI",
+  "personality_one_liner": "A cinematic, deeply atmospheric, and premium AI companion that feels alive, fluid, and profoundly intelligent.",
+  "color": {
+    "surface": "#09090B",
+    "onSurface": "#FAFAFA",
+    "surfaceSecondary": "#18181B",
+    "onSurfaceSecondary": "#A1A1AA",
+    "surfaceTertiary": "#27272A",
+    "onSurfaceTertiary": "#D4D4D8",
+    "surfaceInverse": "#FAFAFA",
+    "onSurfaceInverse": "#09090B",
+    "brand": "#7C3AED",
+    "brandPrimary": "#7C3AED",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#06B6D4",
+    "onBrandSecondary": "#000000",
+    "brandTertiary": "#4C1D95",
+    "onBrandTertiary": "#E9D5FF",
+    "success": "#10B981",
+    "onSuccess": "#000000",
+    "warning": "#F59E0B",
+    "onWarning": "#000000",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#27272A",
+    "borderStrong": "#3F3F46",
+    "divider": "#27272A"
+  },
+  "typography": {
+    "displayFontFamily": "Satoshi",
+    "textFontFamily": "Satoshi",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24,
+      "3xl": 32
+    }
+  },
+  "spacing": {
+    "rule": "Use generous vertical padding to create a cinematic feel. Do not crowd elements. Let the glowing orbs and glass surfaces breathe.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "pill": 999
+  },
+  "shadow_tier": "2",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use 'Liquid Glass' effect: heavy blur combined with a translucent brand-tinted base underneath.",
+      "Apply glass to the bottom tab bar, floating microphone container, sticky headers, and modal scrims.",
+      "Use glass on featured onboarding cards placed over the fluid background."
+    ],
+    "dont's": [
+      "Do not apply blur to body text areas, standard list rows, or standard form inputs.",
+      "Avoid stacking more than two glass layers to prevent muddiness."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-blur",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Splash",
+      "purpose": "Introduce the premium AI vibe with the Hello Sara logo floating over a deep, slow-moving fluid aurora.",
+      "states": {
+        "loading": "Logo fades in, background aurora breathes slowly.",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Full-bleed background image with absolute positioned logo at the center. Use Reanimated for a subtle pulsing scale effect on the logo."
+    },
+    {
+      "name": "Onboarding",
+      "purpose": "Educate users about the AI capabilities through highly visual, cinematic glassmorphic cards.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Full-bleed fluid gradient background. A horizontal flatlist of glassmorphic cards (surfaceSecondary with blur). Each card contains a 3D icon/illustration, a title (xl), and a description (base). A sticky 'Get Started' button at the bottom."
+    },
+    {
+      "name": "Auth",
+      "purpose": "Frictionless entry using Google OAuth or Email.",
+      "states": {
+        "loading": "Spinner on the active button.",
+        "empty": "N/A",
+        "error": "Standard inline error message below the failed input."
+      },
+      "layout": "Minimalist form. Logo at the top, followed by a 'Welcome back' heading. Google sign-in button (pill, borderStrong outline), divider, then email/password inputs (surfaceTertiary background, no border until focused). Sticky submit button."
+    },
+    {
+      "name": "Home",
+      "purpose": "The core AI interaction surface, featuring the animated Sara character and the glowing voice mic.",
+      "states": {
+        "loading": "Orb fades in from dark.",
+        "empty": "Default idle breathing state.",
+        "error": "Orb turns subtle red/warning color if connection fails."
+      },
+      "layout": "Header: Large typography 'Hello, I'm Sara'. Center: A large, abstract glowing orb (Sara) that uses Skia or Reanimated to pulse, blink, and morph. Bottom: A massive, glowing glassmorphic microphone FAB positioned just above the tab bar. The mic should have an expanding gradient ring (Purple to Cyan) when active/listening."
+    },
+    {
+      "name": "Memory",
+      "purpose": "Searchable database of what Sara has learned about the user.",
+      "states": {
+        "loading": "Skeleton cards.",
+        "empty": "Glass card with 'Memory is empty' illustration, explaining that Sara learns over time.",
+        "error": "Centered error text with a 'Retry' pill button."
+      },
+      "layout": "Sticky glass header with a search bar and a horizontally scrolling row of filter chips (brandTertiary). Below, a Masonry or 2-column grid of memory cards (surfaceSecondary) detailing facts."
+    },
+    {
+      "name": "History",
+      "purpose": "Chronological log of past conversations.",
+      "states": {
+        "loading": "Skeleton rows.",
+        "empty": "Minimalist illustration with 'No conversations yet'.",
+        "error": "Centered error text with 'Retry' button."
+      },
+      "layout": "SectionList grouped by Date. Each row is a surfaceSecondary card showing a snippet of the conversation, time, and an icon. Stick section headers (Date) using a glass effect."
+    },
+    {
+      "name": "Settings",
+      "purpose": "Comprehensive app configuration including Appearance, Voice, and Privacy.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Standard iOS-style grouped list. Sections: Appearance, Voice, Language, Permissions, Privacy, About. Rows have a left icon (brandTertiary tinted container), title, and right chevron/toggle."
+    }
+  ],
+  "images": {
+    "splash_background": {
+      "url": "https://images.unsplash.com/photo-1658660854207-8886b1d69bb8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwyfHxob2xvZ3JhcGhpYyUyMGZsdWlkJTIwYWJzdHJhY3QlMjBncmFkaWVudCUyMGJhY2tncm91bmQlMjBkYXJrfGVufDB8fHx8MTc4NDA1NzI2OXww&ixlib=rb-4.1.0&q=85",
+      "dark": "https://images.unsplash.com/photo-1658660854207-8886b1d69bb8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwyfHxob2xvZ3JhcGhpYyUyMGZsdWlkJTIwYWJzdHJhY3QlMjBncmFkaWVudCUyMGJhY2tncm91bmQlMjBkYXJrfGVufDB8fHx8MTc4NDA1NzI2OXww&ixlib=rb-4.1.0&q=85",
+      "alt": "Dark purple and blue flowing holographic fluid shapes"
+    },
+    "sara_avatar_idle": {
+      "url": "https://images.unsplash.com/photo-1667202374066-03b435d61db0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGdsb3dpbmclMjBvcmIlMjAzZCUyMHB1cnBsZSUyMGN5YW58ZW58MHx8fHwxNzg0MDU3MjY5fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "A subtle purple glowing orb in the dark"
+    },
+    "sara_avatar_active": {
+      "url": "https://images.unsplash.com/photo-1637952112301-6090dca83ccb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdsb3dpbmclMjBvcmIlMjAzZCUyMHB1cnBsZSUyMGN5YW58ZW58MHx8fHwxNzg0MDU3MjY5fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "A bright purple and cyan glowing light"
+    }
+  },
+  "haptics": {
+    "events": {
+      "tab_press": "light",
+      "mic_button_press_in": "medium",
+      "mic_button_press_out": "heavy",
+      "toggle_switch": "light",
+      "button_primary": "medium",
+      "card_tap": "light"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Theme Architecture: You MUST implement 3 themes: Light, Dark, and AMOLED. The AMOLED theme is identical to Dark but sets `surface` to `#000000` and darkens `surfaceSecondary` to `#09090B` to save battery and look seamless on OLED screens.",
+    "Sara Character Implementation: Since we lack a 3D model, use the provided `sara_avatar_idle` and `sara_avatar_active` images inside a Reanimated component that scales up/down slowly (breathing effect). Wrap it in an expo-blur or Reanimated shadow drop-shadow that pulses between Purple (#7C3AED) and Cyan (#06B6D4).",
+    "Glowing Mic Interaction: The voice microphone button MUST be the visual centerpiece of the Home screen. Implement a 60fps-style fluid animation using Reanimated. When idle, it has a soft purple glow. When pressed/listening, it should expand with a multi-layered cyan/purple ring that pulses.",
+    "Liquid Glass UI: Ensure the bottom tab bar and sticky headers use `expo-blur`. Important: text placed ON TOP of a glass surface must use `onSurface` and have perfect readability. If the background makes it hard to read, add a translucent dark tint (`rgba(9,9,11,0.7)`) underneath the blur layer.",
+    "Onboarding: Use the `splash_background` holographic image as a full-bleed backdrop behind the onboarding cards. Use a gradient scrim (top to bottom, transparent to 80% surfaceInverse) if text needs to go directly over it.",
+    "Data structure preparation: Keep in mind Phase 1 requires foundation for Users, Settings, History, Memories, and Reminders. Build UI states (Loading/Empty/Error) gracefully assuming FastAPI + MongoDB integration."
+  ]
+}
