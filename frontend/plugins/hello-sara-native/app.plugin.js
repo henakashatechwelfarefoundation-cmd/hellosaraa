@@ -24,6 +24,8 @@ function addPermissions(config) {
     'android.permission.RECORD_AUDIO',
     'android.permission.WAKE_LOCK',
     'android.permission.POST_NOTIFICATIONS',
+    'android.permission.QUERY_ALL_PACKAGES',
+
   ]);
 }
 
