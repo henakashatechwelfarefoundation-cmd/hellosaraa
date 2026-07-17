@@ -5,13 +5,14 @@ Place 3 ONNX model files here (OpenWakeWord's pipeline):
 3. hey_sara.onnx
 
 Files 1 and 2 are SHARED, unmodified files from the OpenWakeWord project —
-download them as-is, no training needed:
-  https://github.com/dscripka/openWakeWord/tree/main/openwakeword/resources/models
+download them as-is (direct links, GitHub Releases, no repo browsing needed):
+  https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/melspectrogram.onnx
+  https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/embedding_model.onnx
 
 File 3 (hey_sara.onnx) is the ONLY one that needs custom training, since
 "Hello Sara" / "Hey Sara" isn't one of OpenWakeWord's pretrained keywords.
 Train it using OpenWakeWord's training notebook/script:
-  https://github.com/dscripka/openWakeWord#training-new-models
+  https://github.com/dscripka/openWakeWord/blob/main/notebooks/automatic_model_training.ipynb
 This generates synthetic training clips via TTS + augmentation and trains a
 small classifier — no manual audio recording needed. Export the result to
 ONNX and save it here as hey_sara.onnx.
