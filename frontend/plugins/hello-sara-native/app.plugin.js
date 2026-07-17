@@ -63,19 +63,6 @@ function addServiceAndActivity(config) {
       });
     }
 
-    // Inject the Picovoice AccessKey as manifest meta-data so the native
-    // service can read it at runtime without any JS bridge. Set
-    // PICOVOICE_ACCESS_KEY in frontend/.env and re-run `expo prebuild`.
-    app['meta-data'] = app['meta-data'] || [];
-    const metaKey = 'com.hellosara.PICOVOICE_ACCESS_KEY';
-    const existingMeta = app['meta-data'].find((m) => m.$?.['android:name'] === metaKey);
-    const accessKey = process.env.PICOVOICE_ACCESS_KEY || '';
-    if (existingMeta) {
-      existingMeta.$['android:value'] = accessKey;
-    } else {
-      app['meta-data'].push({ $: { 'android:name': metaKey, 'android:value': accessKey } });
-    }
-
     return cfg;
   });
 }
@@ -100,11 +87,17 @@ function copyNativeSources(config) {
         }
       }
 
-      const ppnSrc = path.join(pluginDir, 'android/assets/hey_sara.ppn');
-      if (fs.existsSync(ppnSrc)) {
+      const assetFiles = ['melspectrogram.onnx', 'embedding_model.onnx', 'hey_sara.onnx'];
+      const hasAny = assetFiles.some((f) => fs.existsSync(path.join(pluginDir, 'android/assets', f)));
+      if (hasAny) {
         const assetsDir = path.join(projectRoot, 'app/src/main/assets');
         fs.mkdirSync(assetsDir, { recursive: true });
-        fs.copyFileSync(ppnSrc, path.join(assetsDir, 'hey_sara.ppn'));
+        for (const f of assetFiles) {
+          const src = path.join(pluginDir, 'android/assets', f);
+          if (fs.existsSync(src)) {
+            fs.copyFileSync(src, path.join(assetsDir, f));
+          }
+        }
       }
 
       return cfg;
@@ -112,14 +105,14 @@ function copyNativeSources(config) {
   ]);
 }
 
-// Adds the Porcupine wake-word SDK as a Gradle dependency.
-function addPorcupineDependency(config) {
+// Adds the ONNX Runtime Android dependency (OpenWakeWord's inference engine).
+function addOnnxRuntimeDependency(config) {
   return withAppBuildGradle(config, (cfg) => {
-    const marker = "implementation 'ai.picovoice:porcupine-android:";
+    const marker = "implementation 'com.microsoft.onnxruntime:onnxruntime-android:";
     if (!cfg.modResults.contents.includes(marker)) {
       cfg.modResults.contents = cfg.modResults.contents.replace(
         /dependencies\s*{/,
-        `dependencies {\n    implementation 'ai.picovoice:porcupine-android:3.0.2'`,
+        `dependencies {\n    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.19.2'`,
       );
     }
     return cfg;
@@ -130,7 +123,7 @@ module.exports = function withHelloSaraNative(config) {
   return withPlugins(config, [
     addPermissions,
     addServiceAndActivity,
-    addPorcupineDependency,
+    addOnnxRuntimeDependency,
     copyNativeSources, // must run after manifest/gradle mods so files land in the finished project
   ]);
 };
