@@ -16,11 +16,12 @@ after adding it you must build a native dev/prod client.
 1. Add the plugin to `app.json` (already added in this project).
 2. Get the 3 ONNX model files and place them in
    `frontend/plugins/hello-sara-native/android/assets/`:
-   - `melspectrogram.onnx` and `embedding_model.onnx` — shared files, download
-     as-is from https://github.com/dscripka/openWakeWord/tree/main/openwakeword/resources/models
-     (same for every wake word, no training needed).
+   - `melspectrogram.onnx` and `embedding_model.onnx` — shared files, same
+     for every wake word, no training needed. Download directly:
+     https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/melspectrogram.onnx
+     https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/embedding_model.onnx
    - `hey_sara.onnx` — the only custom part. Train it with OpenWakeWord's
-     training pipeline (https://github.com/dscripka/openWakeWord#training-new-models),
+     training pipeline (https://github.com/dscripka/openWakeWord/blob/main/notebooks/automatic_model_training.ipynb),
      which synthesizes training clips via TTS + augmentation — no manual
      audio recording required. Export to ONNX and save it here.
 3. Build:
