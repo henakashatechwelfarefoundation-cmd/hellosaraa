@@ -1,0 +1,20 @@
+Place 3 ONNX model files here (OpenWakeWord's pipeline):
+
+1. melspectrogram.onnx
+2. embedding_model.onnx
+3. hey_sara.onnx
+
+Files 1 and 2 are SHARED, unmodified files from the OpenWakeWord project —
+download them as-is, no training needed:
+  https://github.com/dscripka/openWakeWord/tree/main/openwakeword/resources/models
+
+File 3 (hey_sara.onnx) is the ONLY one that needs custom training, since
+"Hello Sara" / "Hey Sara" isn't one of OpenWakeWord's pretrained keywords.
+Train it using OpenWakeWord's training notebook/script:
+  https://github.com/dscripka/openWakeWord#training-new-models
+This generates synthetic training clips via TTS + augmentation and trains a
+small classifier — no manual audio recording needed. Export the result to
+ONNX and save it here as hey_sara.onnx.
+
+Once all 3 files are here, `npx expo prebuild --clean` copies them into the
+native project automatically (see app.plugin.js).
